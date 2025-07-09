@@ -32,6 +32,19 @@
         <input type="text" name="image" value="{{ old('image') }}"
                class="w-full border rounded px-3 py-2" />
       </div>
+      <div>
+        <label class="block text-gray-700">Stock</label>
+        <input type="number" name="stock" value="{{ old('stock',0) }}" min="0" class="w-full border rounded px-3 py-2" />
+      </div>
+      <div>
+        <label class="block text-gray-700">Category</label>
+        <select name="category_id" class="w-full border rounded px-3 py-2">
+          <option value="">-</option>
+          @foreach($categories as $c)
+            <option value="{{ $c->id }}" @selected(old('category_id')==$c->id)>{{ $c->name }}</option>
+          @endforeach
+        </select>
+      </div>
       <button type="submit"
               class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500">
         Add Product
