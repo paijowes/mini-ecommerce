@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     // List products with toolbar
-    public function index()
+    public function index(Request $request)
     {
         $query = Product::query()->with('category');
         if ($search = $request->query('search')) {
