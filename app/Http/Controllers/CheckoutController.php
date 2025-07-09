@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,8 +16,9 @@ class CheckoutController extends Controller {
         if(!$cart) return redirect()->route('products.index');
         $total = collect($cart)->sum(fn($item)=> $item['price'] * $item['quantity']);
         $order = Order::create([
-            'user_id'=>Auth::id(),
-            'total'=>$total
+            'user_id' => Auth::id(),
+            'total' => $total,
+            'status' => 'paid'
         ]);
         foreach($cart as $id=>$item){
             OrderItem::create([
@@ -25,6 +27,7 @@ class CheckoutController extends Controller {
                 'quantity'=>$item['quantity'],
                 'price'=>$item['price']
             ]);
+            Product::where('id', $id)->decrement('stock', $item['quantity']);
         }
         session()->forget('cart');
         return view('checkout.success', compact('order'));
