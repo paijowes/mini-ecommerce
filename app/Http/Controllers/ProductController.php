@@ -24,7 +24,6 @@ class ProductController extends Controller
         $categories = Category::all();
 
         return view('products.index', compact('products', 'categories', 'search', 'category'));
-=======
         if ($search = $request->query('search')) {
             $query->where('name', 'like', "%{$search}%");
         }
@@ -34,7 +33,6 @@ class ProductController extends Controller
         $products = $query->latest()->paginate(12)->withQueryString();
         $categories = Category::all();
         return view('products.index', compact('products','categories','search','category'));
->>>>>>> ecd8bcaeaf89bbffd398f7f33fef4527facf1bec
     }
 
     // Show create form
