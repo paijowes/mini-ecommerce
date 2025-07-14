@@ -12,6 +12,17 @@
     @endauth
   </div>
 
+  <form method="GET" class="mb-6 flex space-x-2">
+    <input type="text" name="search" value="{{ $search ?? '' }}" placeholder="Search" class="border rounded px-2 py-1">
+    <select name="category" class="border rounded px-2 py-1">
+      <option value="">All Categories</option>
+      @foreach($categories as $c)
+        <option value="{{ $c->id }}" @selected(($category ?? '')==$c->id)>{{ $c->name }}</option>
+      @endforeach
+    </select>
+    <button class="bg-indigo-600 text-white px-4 rounded">Filter</button>
+  </form>
+
   <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     @foreach($products as $product)
       <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition">
