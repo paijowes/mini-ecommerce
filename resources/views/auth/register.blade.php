@@ -36,6 +36,16 @@
                     <input id="password_confirmation" type="password" name="password_confirmation" required
                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50" />
                 </div>
+                <!-- Role -->
+                <div class="mt-4">
+                    <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Daftar Sebagai</label>
+                    <select id="role" name="role" required
+                            class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        <option value="user">Pembeli</option>
+                        <option value="admin">Toko</option>
+                    </select>
+                </div>
+
                 <div class="flex items-center justify-between">
                     <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:underline">
                         {{ __('Already registered?') }}
