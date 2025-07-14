@@ -13,7 +13,6 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\HomeController;
 
-
 // Auth routes
 require __DIR__.'/auth.php';
 
@@ -78,4 +77,3 @@ Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::resource('products', AdminProductController::class)->except(['show']);
 });
-
